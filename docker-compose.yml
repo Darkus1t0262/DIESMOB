@@ -1,0 +1,33 @@
+version: '3.9'
+services:
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: diesel_user
+      POSTGRES_PASSWORD: diesel_pass
+      POSTGRES_DB: diesel_subsidy
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+  redis:
+    image: redis:7
+    ports:
+      - "6379:6379"
+  backend:
+    build: ./backend
+    environment:
+      PORT: 4000
+      DATABASE_URL: postgresql://diesel_user:diesel_pass@db:5432/diesel_subsidy
+      JWT_SECRET: supersecretjwt
+      UPLOAD_DIR: /app/uploads
+      REDIS_URL: redis://redis:6379
+    volumes:
+      - ./backend/uploads:/app/uploads
+    ports:
+      - "4000:4000"
+    depends_on:
+      - db
+      - redis
+volumes:
+  pgdata:
