@@ -1,0 +1,34 @@
+{
+  "expo": {
+    "name": "eco-combustible-regulador-tablet",
+    "slug": "eco-combustible-regulador-tablet",
+    "version": "1.0.0",
+    "orientation": "landscape",
+    "scheme": "eco-combustible-regulador-tablet",
+    "userInterfaceStyle": "light",
+    "assetBundlePatterns": ["**/*"],
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {},
+    "web": {
+      "bundler": "metro"
+    },
+    "plugins": [
+      [
+        "expo-location",
+        {
+          "locationAlwaysAndWhenInUsePermission": "Allow EcoCombustible to access your location."
+        }
+      ],
+      [
+        "react-native-maps",
+        {
+          "config": {
+            "googleMapsApiKey": ""
+          }
+        }
+      ]
+    ]
+  }
+}
